@@ -1,0 +1,21 @@
+{
+  "name": "node_auth_with_email_verification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd server && npm install && cd ../client && npm install && npm run build",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumitsharma372/node_auth_with_email_verification.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumitsharma372/node_auth_with_email_verification/issues"
+  },
+  "homepage": "https://github.com/sumitsharma372/node_auth_with_email_verification#readme"
+}
