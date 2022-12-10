@@ -1,21 +1,30 @@
 {
-  "name": "node_auth_with_email_verification",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd server && npm install && cd ../client && npm install && npm run build",
-    "start": "node server/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sumitsharma372/node_auth_with_email_verification.git"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sumitsharma372/node_auth_with_email_verification/issues"
-  },
-  "homepage": "https://github.com/sumitsharma372/node_auth_with_email_verification#readme"
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.8.0",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
 }
