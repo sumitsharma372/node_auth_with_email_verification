@@ -18,7 +18,7 @@ const Login = () => {
     const handleSubmit = async(e) => {
             e.preventDefault();
             try {
-                const url = "http://localhost:8080/api/users/login";
+                const url = "/api/users/login";
                 const { data : res } = await axios.post(url, data)
                 localStorage.setItem("token", JSON.stringify(res));
                 window.location.href = "/";
