@@ -47,7 +47,7 @@ router.post('/signup', async (req, res) => {
         ${url}
         `);
 
-        res.status(201).json({user: result, message: 'An email has been sent to verify your account'})
+        res.status(201).json({ message: 'An email has been sent to verify your account'})
 
     } catch (error) {
         res.status(500).json({message: 'Internal Server Error'})
@@ -78,6 +78,7 @@ router.post('/login', async (req, res) => {
                 await sendEmail(user.email, "Verify your account", url);
                 return res.status(401).json({ message: 'An email has been sent to your email address'})
             }
+            
             return res.status(400).json({ message: 'An email has already been sent to verify your account'})
         }
 
