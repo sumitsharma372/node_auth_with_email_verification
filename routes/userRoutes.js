@@ -41,7 +41,11 @@ router.post('/signup', async (req, res) => {
         })
 
         const url = `${process.env.BASE_URL}users/${token.userId}/verify/${token.token}`;
-        await sendEmail(result.email, "Verify your account", url);
+        await sendEmail(result.email, "Verify your account", 
+        `Welcome to this amazing website !!
+        Verify Your account by clicking this link:
+        ${url}
+        `);
 
         res.status(201).json({user: result, message: 'An email has been sent to verify your account'})
 
@@ -96,8 +100,8 @@ router.get("/:id/verify/:token", async (req, res) => {
 
         if (!token) return res.status(404).json({ message: 'Token Invalid or expired' })
 
-        const result = await User.findByIdAndUpdate(user._id, { verified: true });
-        await Token.remove({ userId: user._id, token: req.params.token });
+        const result = await User.findByIdAndUpdate(user._id, { verified: true }, {new: true});
+        await Token.deleteOne({ userId: user._id, token: req.params.token });
         
         res.status(200).json({ user: result, message: 'Email Verified' })
     } catch (error) {
