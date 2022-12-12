@@ -78,7 +78,7 @@ router.post('/login', async (req, res) => {
                 await sendEmail(user.email, "Verify your account", url);
                 return res.status(401).json({ message: 'An email has been sent to your email address'})
             }
-            
+
             return res.status(400).json({ message: 'An email has already been sent to verify your account'})
         }
 
@@ -104,7 +104,7 @@ router.get("/:id/verify/:token", async (req, res) => {
         const result = await User.findByIdAndUpdate(user._id, { verified: true }, {new: true});
         await Token.deleteOne({ userId: user._id, token: req.params.token });
         
-        res.status(200).json({ user: result, message: 'Email Verified' })
+        res.status(200).json({ user: result, message: 'Email Verified. You can login now' })
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error'})
         
