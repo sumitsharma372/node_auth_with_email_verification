@@ -31,6 +31,8 @@ router.post('/signup', async (req, res) => {
 
         if (user) return res.status(409).json({ message: 'User already exists' })
 
+        if(req.body.password !== req.body.confirmPassword) return res.status(401).json({ message: 'Passwords do not match'})
+
         const hashPassword = await bcrypt.hash(req.body.password, 10)
 
         const result = await User.create({...req.body, password: hashPassword })
